@@ -4,11 +4,9 @@ import me.liamdodds.framework.input.KeyboardManager;
 import me.liamdodds.framework.logging.Logger;
 import me.liamdodds.framework.logging.ScreenLogger;
 import me.liamdodds.framework.screens.ScreenManager;
-import me.liamdodds.framework.screens.test.PrimaryScreen;
 import me.liamdodds.framework.utility.FPSLock;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.Random;
 
 /**

@@ -20,6 +20,7 @@ public class ScreenLogger implements Logger {
      * @param message The message to log
      */
     public void log(String cls, String message) {
+
         queue.add("[" + cls + "] " + message);
     }
 
@@ -44,7 +45,7 @@ public class ScreenLogger implements Logger {
                 toBeRemoved.add(message);
                 continue;
             }
-            g2d.drawString(message, 10, y + fontSize);
+            g2d.drawString(message, 10, y - fontSize);
             y -= lineHeight;
         }
 

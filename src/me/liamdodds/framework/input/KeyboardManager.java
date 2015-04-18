@@ -29,6 +29,7 @@ public class KeyboardManager implements KeyListener, Loggable {
                 b.append(" + ");
             }
         }
+        b = b.reverse().delete(0, 3).reverse();
         logger.log("Keyboard Manager", b.toString());
 
     }
