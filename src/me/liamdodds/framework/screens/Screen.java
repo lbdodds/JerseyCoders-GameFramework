@@ -1,13 +1,21 @@
 package me.liamdodds.framework.screens;
 
-import me.liamdodds.framework.utility.GameEntity;
+import me.liamdodds.framework.Game;
+import me.liamdodds.framework.utility.Drawable;
+import me.liamdodds.framework.utility.GameObject;
+import me.liamdodds.framework.utility.Updatable;
 
 /**
  * Created by Liam Cristoforo-Dodds on 12/04/2015.
  */
-public interface Screen extends GameEntity {
-    void becomesActive();
-    void becomeInactive();
-    ScreenProcessState getUpdateState();
-    ScreenProcessState getDrawState();
+public abstract class Screen extends GameObject implements Updatable, Drawable {
+
+    public Screen(Game game) {
+        super(game);
+    }
+
+    public abstract void becomesActive();
+    public abstract void becomeInactive();
+    public abstract ScreenProcessState getUpdateState();
+    public abstract ScreenProcessState getDrawState();
 }

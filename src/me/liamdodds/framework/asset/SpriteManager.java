@@ -1,6 +1,6 @@
 package me.liamdodds.framework.asset;
 
-import me.liamdodds.framework.Manager;
+import me.liamdodds.framework.Game;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,12 +11,11 @@ import java.util.HashMap;
  * Loads and stored sprites to be used
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
-public class SpriteManager extends Manager {
+public class SpriteManager extends AssetManager {
     private HashMap<String, BufferedImage> sprites = new HashMap<>();
-    private String baseURL;
 
-    public SpriteManager(String baseURL) {
-        this.baseURL = baseURL;
+    public SpriteManager(Game game) {
+        super(game);
     }
 
     /**
@@ -50,4 +49,5 @@ public class SpriteManager extends Manager {
     public BufferedImage get(String name) {
         return sprites.get(name);
     }
+
 }

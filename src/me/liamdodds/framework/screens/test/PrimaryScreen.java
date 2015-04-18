@@ -1,5 +1,6 @@
 package me.liamdodds.framework.screens.test;
 
+import me.liamdodds.framework.Game;
 import me.liamdodds.framework.screens.Screen;
 import me.liamdodds.framework.screens.ScreenProcessState;
 
@@ -9,13 +10,14 @@ import java.util.Random;
 /**
  * Created by Liam Cristoforo-Dodds on 12/04/2015.
  */
-public class PrimaryScreen implements Screen {
+public class PrimaryScreen extends Screen {
 
     private Color color;
     private int num = 10;
     private Random random = new Random();
 
-    public PrimaryScreen(Color color) {
+    public PrimaryScreen(Game game, Color color) {
+        super(game);
         this.color = color;
     }
 

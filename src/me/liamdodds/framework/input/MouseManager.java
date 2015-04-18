@@ -1,8 +1,7 @@
 package me.liamdodds.framework.input;
 
-import me.liamdodds.framework.Framework;
-import me.liamdodds.framework.logging.Loggable;
-import me.liamdodds.framework.logging.Logger;
+import me.liamdodds.framework.Game;
+import me.liamdodds.framework.utility.Manager;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -11,14 +10,12 @@ import java.awt.event.MouseListener;
 /**
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
-public class MouseManager implements MouseListener, Loggable {
+public class MouseManager extends Manager implements MouseListener {
 
     private static boolean[] state = new boolean[3];
-    private Framework framework;
-    private Logger logger;
 
-    public MouseManager(Framework framework) {
-        this.framework = framework;
+    public MouseManager(Game game) {
+        super(game);
     }
 
 
@@ -34,7 +31,7 @@ public class MouseManager implements MouseListener, Loggable {
 
     public Point getPosition() {
         try {
-            Point mousePosition = framework.getMousePosition();
+            Point mousePosition = game.getMousePosition();
             return mousePosition != null ? mousePosition : new Point(0,0);
         } catch(Exception e) {
             return new Point(0,0);
@@ -53,9 +50,4 @@ public class MouseManager implements MouseListener, Loggable {
 
     @Override
     public void mouseExited(MouseEvent e) {}
-
-    @Override
-    public void setLogger(Logger logger) {
-        this.logger = logger;
-    }
 }
