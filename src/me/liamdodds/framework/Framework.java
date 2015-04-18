@@ -8,7 +8,6 @@ import me.liamdodds.framework.screens.ScreenManager;
 import me.liamdodds.framework.utility.FPSLock;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.util.Random;
 
 /**
