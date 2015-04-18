@@ -15,6 +15,7 @@ public abstract class Canvas extends JPanel {
         this.setFocusable(true);
         // Makes the background black
         this.setBackground(Color.black);
+
     }
 
     /**
