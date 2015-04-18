@@ -15,9 +15,7 @@ public class KeyboardManager implements KeyListener, Loggable {
     private Logger logger;
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) { /* Do Nothing */ }
 
     @Override
     public void keyPressed(KeyEvent e) {
