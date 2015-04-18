@@ -1,9 +1,13 @@
 package me.liamdodds.framework;
 
+import me.liamdodds.framework.logging.Logger;
+import me.liamdodds.framework.logging.ScreenLogger;
 import me.liamdodds.framework.screens.ScreenManager;
+import me.liamdodds.framework.screens.test.PrimaryScreen;
 import me.liamdodds.framework.utility.FPSLock;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * The Game Framework that runs the game loop
@@ -11,7 +15,9 @@ import java.awt.*;
  */
 public class Framework extends Canvas {
 
+    private Random random;
     private ScreenManager screenManager;
+    private Logger logger;
 
     public Framework() {
         super();
@@ -33,7 +39,12 @@ public class Framework extends Canvas {
      * Initializes the framework
      */
     private void initialize() {
+        random = new Random();
         screenManager = new ScreenManager();
+        logger = new ScreenLogger();
+        logger.setFramework(this);
+
+        screenManager.push("PrimaryScreen", new PrimaryScreen(Color.GRAY));
     }
 
     /**
@@ -64,6 +75,7 @@ public class Framework extends Canvas {
     @Override
     public void draw(Graphics2D g2d) {
         screenManager.draw(g2d);
+        logger.draw(g2d);
     }
 
     /**
@@ -73,4 +85,10 @@ public class Framework extends Canvas {
     public ScreenManager getScreenManager() {
         return screenManager;
     }
+
+    /**
+     * Returns the Framework's Logger instance
+     * @return Framework's Logger instance
+     */
+    public Logger getLogger() { return logger; }
 }
