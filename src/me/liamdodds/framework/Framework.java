@@ -1,9 +1,9 @@
-package framework;
+package me.liamdodds.framework;
 
-import framework.utility.FPSLock;
+import me.liamdodds.framework.screens.ScreenManager;
+import me.liamdodds.framework.utility.FPSLock;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
  * The Game Framework that runs the game loop
@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class Framework extends Canvas {
 
-    public Random random = new Random();
+    private ScreenManager screenManager;
 
     public Framework() {
         super();
@@ -30,9 +30,17 @@ public class Framework extends Canvas {
     }
 
     /**
+     * Initializes the framework
+     */
+    private void initialize() {
+        screenManager = new ScreenManager();
+    }
+
+    /**
      * Loops over the key elements to getting the game to run; Update, Draw, FPS Lock
      */
     private void gameLoop() {
+        initialize();
         while(true) {
             FPSLock.start();
             update();
@@ -46,7 +54,7 @@ public class Framework extends Canvas {
      */
     @Override
     public void update() {
-        // Updating
+        screenManager.update();
     }
 
     /**
@@ -55,6 +63,14 @@ public class Framework extends Canvas {
      */
     @Override
     public void draw(Graphics2D g2d) {
-        // Drawing
+        screenManager.draw(g2d);
+    }
+
+    /**
+     * Returns the Framework's Screen Manager
+     * @return Framework's Screen Manager
+     */
+    public ScreenManager getScreenManager() {
+        return screenManager;
     }
 }

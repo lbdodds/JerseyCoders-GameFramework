@@ -1,4 +1,4 @@
-package framework.utility;
+package me.liamdodds.framework.utility;
 
 /**
  * Created by Liam Cristoforo-Dodds on 06/04/2015.

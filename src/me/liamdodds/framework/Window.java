@@ -1,4 +1,4 @@
-package framework;
+package me.liamdodds.framework;
 
 import javax.swing.*;
 
