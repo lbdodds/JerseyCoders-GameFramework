@@ -1,8 +1,6 @@
 package me.liamdodds.framework;
 
-import me.liamdodds.framework.screens.PrimaryScreen;
 import me.liamdodds.framework.screens.ScreenManager;
-import me.liamdodds.framework.screens.TestScreen;
 import me.liamdodds.framework.utility.FPSLock;
 
 import java.awt.*;
@@ -36,10 +34,6 @@ public class Framework extends Canvas {
      */
     private void initialize() {
         screenManager = new ScreenManager();
-//        screenManager.push("TestScreen", new TestScreen(Color.RED));
-//        screenManager.add("ThirdTestScreen", new TestScreen(Color.GREEN));
-//        screenManager.add("PrimaryScreen", new PrimaryScreen(Color.BLUE));
-
     }
 
     /**

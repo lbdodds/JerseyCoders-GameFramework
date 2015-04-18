@@ -1,4 +1,7 @@
-package me.liamdodds.framework.screens;
+package me.liamdodds.framework.screens.test;
+
+import me.liamdodds.framework.screens.Screen;
+import me.liamdodds.framework.screens.ScreenProcessState;
 
 import java.awt.*;
 import java.util.Random;
@@ -6,13 +9,13 @@ import java.util.Random;
 /**
  * Created by Liam Cristoforo-Dodds on 12/04/2015.
  */
-public class TestScreen implements Screen {
+public class PrimaryScreen implements Screen {
 
     private Color color;
     private int num = 10;
     private Random random = new Random();
 
-    public TestScreen(Color color) {
+    public PrimaryScreen(Color color) {
         this.color = color;
     }
 
@@ -41,11 +44,11 @@ public class TestScreen implements Screen {
 
     @Override
     public ScreenProcessState getUpdateState() {
-        return ScreenProcessState.TRANSPARENT;
+        return ScreenProcessState.PRIMARY;
     }
 
     @Override
     public ScreenProcessState getDrawState() {
-        return ScreenProcessState.TRANSPARENT;
+        return ScreenProcessState.PRIMARY;
     }
 }
