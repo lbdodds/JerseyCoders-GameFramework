@@ -1,6 +1,7 @@
 package me.liamdodds.framework;
 
 import me.liamdodds.framework.logging.Logger;
+import me.liamdodds.framework.logging.ScreenLogger;
 import me.liamdodds.framework.screens.ScreenManager;
 import me.liamdodds.framework.screens.test.PrimaryScreen;
 import me.liamdodds.framework.utility.FPSLock;
@@ -40,7 +41,8 @@ public class Framework extends Canvas {
     private void initialize() {
         random = new Random();
         screenManager = new ScreenManager();
-        logger = new Logger(this);
+        logger = new ScreenLogger();
+        logger.setFramework(this);
 
         screenManager.push("PrimaryScreen", new PrimaryScreen(Color.GRAY));
     }
@@ -84,5 +86,9 @@ public class Framework extends Canvas {
         return screenManager;
     }
 
+    /**
+     * Returns the Framework's Logger instance
+     * @return Framework's Logger instance
+     */
     public Logger getLogger() { return logger; }
 }
