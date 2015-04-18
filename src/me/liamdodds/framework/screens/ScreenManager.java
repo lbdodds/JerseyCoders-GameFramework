@@ -1,5 +1,6 @@
 package me.liamdodds.framework.screens;
 
+import me.liamdodds.framework.Manager;
 import me.liamdodds.framework.utility.GameEntity;
 
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.util.HashMap;
 /**
  * Created by Liam Cristoforo-Dodds on 12/04/2015.
  */
-public class ScreenManager implements GameEntity {
+public class ScreenManager extends Manager implements GameEntity {
 
     private HashMap<String, Screen> screens = new HashMap<>();
     private ArrayList<Screen> stack = new ArrayList<>();

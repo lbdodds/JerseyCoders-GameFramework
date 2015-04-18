@@ -1,7 +1,6 @@
 package me.liamdodds.framework.input;
 
-import me.liamdodds.framework.logging.Loggable;
-import me.liamdodds.framework.logging.Logger;
+import me.liamdodds.framework.Manager;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,10 +8,9 @@ import java.awt.event.KeyListener;
 /**
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
-public class KeyboardManager implements KeyListener, Loggable {
+public class KeyboardManager extends Manager implements KeyListener {
 
     private boolean[] state = new boolean[525];
-    private Logger logger;
 
     @Override
     public void keyTyped(KeyEvent e) { /* Do Nothing */ }
@@ -44,10 +42,5 @@ public class KeyboardManager implements KeyListener, Loggable {
      */
     public boolean isKeyDown(int key) {
         return state[key];
-    }
-
-    @Override
-    public void setLogger(Logger logger) {
-        this.logger = logger;
     }
 }
