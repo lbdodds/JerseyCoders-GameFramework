@@ -1,9 +1,10 @@
 package me.liamdodds.framework;
 
+import me.liamdodds.framework.input.KeyboardManager;
+import me.liamdodds.framework.input.MouseManager;
 import me.liamdodds.framework.logging.Logger;
 import me.liamdodds.framework.logging.ScreenLogger;
 import me.liamdodds.framework.screens.ScreenManager;
-import me.liamdodds.framework.screens.test.PrimaryScreen;
 import me.liamdodds.framework.utility.FPSLock;
 
 import java.awt.*;
@@ -17,6 +18,8 @@ public class Framework extends Canvas {
 
     private Random random;
     private ScreenManager screenManager;
+    private KeyboardManager keyboard;
+    private MouseManager mouse;
     private Logger logger;
 
     public Framework() {
@@ -44,7 +47,14 @@ public class Framework extends Canvas {
         logger = new ScreenLogger();
         logger.setFramework(this);
 
-        screenManager.push("PrimaryScreen", new PrimaryScreen(Color.GRAY));
+        keyboard = new KeyboardManager();
+        keyboard.setLogger(logger);
+
+        mouse = new MouseManager(this);
+        mouse.setLogger(logger);
+
+        this.addKeyListener(keyboard);
+        this.addMouseListener(mouse);
     }
 
     /**

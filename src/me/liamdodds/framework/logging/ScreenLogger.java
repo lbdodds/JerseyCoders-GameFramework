@@ -12,7 +12,7 @@ import java.util.Collections;
  */
 public class ScreenLogger implements Logger {
     Framework framework;
-    ArrayList<String> queue = new ArrayList<>();
+    ArrayList<LogMessage> queue = new ArrayList<>();
 
     /**
      * Adds the log to the current queue
@@ -20,7 +20,8 @@ public class ScreenLogger implements Logger {
      * @param message The message to log
      */
     public void log(String cls, String message) {
-        queue.add("[" + cls + "] " + message);
+
+        queue.add(new LogMessage(cls, message));
     }
 
     /**
@@ -28,24 +29,22 @@ public class ScreenLogger implements Logger {
      * @param g2d
      */
     public void draw(Graphics2D g2d) {
-        ArrayList<String> buffer = (ArrayList<String>)queue.clone();
-        ArrayList<String> toBeRemoved = new ArrayList<>();
+        ArrayList<LogMessage> buffer = (ArrayList<LogMessage>)queue.clone();
+        ArrayList<LogMessage> toBeRemoved = new ArrayList<>();
         Collections.reverse(buffer);
         int height = framework.getHeight();
         int y = height;
 
-        int fontSize = 16;
-        int lineHeight = (int)(fontSize * 1.5);
-
-        g2d.setColor(Color.WHITE);
-        g2d.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
-        for(String message : buffer) {
-            if(y < -fontSize) {
+        for(LogMessage message : buffer) {
+            if(y < 0-message.getFont().getSize()) {
                 toBeRemoved.add(message);
                 continue;
             }
-            g2d.drawString(message, 10, y + fontSize);
-            y -= lineHeight;
+
+            g2d.setColor(message.getColor());
+            g2d.setFont(message.getFont());
+            g2d.drawString(message.getLog(), 10, y - message.getFont().getSize());
+            y -= message.getLineHeight();
         }
 
         toBeRemoved.forEach(queue::remove);
