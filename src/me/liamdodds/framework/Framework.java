@@ -1,9 +1,8 @@
 package me.liamdodds.framework;
 
-import me.liamdodds.framework.input.KeyboardManager;
-import me.liamdodds.framework.input.MouseManager;
+import me.liamdodds.framework.asset.AudioManager;
+import me.liamdodds.framework.asset.SpriteManager;
 import me.liamdodds.framework.logging.Logger;
-import me.liamdodds.framework.logging.ScreenLogger;
 import me.liamdodds.framework.screens.ScreenManager;
 import me.liamdodds.framework.utility.FPSLock;
 
@@ -15,12 +14,7 @@ import java.util.Random;
  * Created by Liam Cristoforo-Dodds on 06/04/2015.
  */
 public class Framework extends Canvas {
-
-    private Random random;
-    private ScreenManager screenManager;
-    private KeyboardManager keyboard;
-    private MouseManager mouse;
-    private Logger logger;
+    private Game game;
 
     public Framework() {
         super();
@@ -42,19 +36,13 @@ public class Framework extends Canvas {
      * Initializes the framework
      */
     private void initialize() {
-        random = new Random();
-        screenManager = new ScreenManager();
-        logger = new ScreenLogger();
-        logger.setFramework(this);
+        game = new Game(this);
 
-        keyboard = new KeyboardManager();
-        keyboard.setLogger(logger);
+        this.addKeyListener(game.getKeyboardManager());
+        this.addMouseListener(game.getMouseManager());
 
-        mouse = new MouseManager(this);
-        mouse.setLogger(logger);
-
-        this.addKeyListener(keyboard);
-        this.addMouseListener(mouse);
+        game.getSpriteManager().load("bottles", "bottles.png");
+        game.getAudioManager().play("audio");
     }
 
     /**
@@ -75,7 +63,7 @@ public class Framework extends Canvas {
      */
     @Override
     public void update() {
-        screenManager.update();
+        game.getScreenManager().update();
     }
 
     /**
@@ -84,21 +72,7 @@ public class Framework extends Canvas {
      */
     @Override
     public void draw(Graphics2D g2d) {
-        screenManager.draw(g2d);
-        logger.draw(g2d);
+        game.getScreenManager().draw(g2d);
+        game.getLogger().draw(g2d);
     }
-
-    /**
-     * Returns the Framework's Screen Manager
-     * @return Framework's Screen Manager
-     */
-    public ScreenManager getScreenManager() {
-        return screenManager;
-    }
-
-    /**
-     * Returns the Framework's Logger instance
-     * @return Framework's Logger instance
-     */
-    public Logger getLogger() { return logger; }
 }

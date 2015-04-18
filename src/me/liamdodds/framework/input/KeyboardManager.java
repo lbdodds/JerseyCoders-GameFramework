@@ -1,6 +1,7 @@
 package me.liamdodds.framework.input;
 
-import me.liamdodds.framework.Manager;
+import me.liamdodds.framework.Game;
+import me.liamdodds.framework.utility.Manager;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,6 +12,10 @@ import java.awt.event.KeyListener;
 public class KeyboardManager extends Manager implements KeyListener {
 
     private boolean[] state = new boolean[525];
+
+    public KeyboardManager(Game game) {
+        super(game);
+    }
 
     @Override
     public void keyTyped(KeyEvent e) { /* Do Nothing */ }

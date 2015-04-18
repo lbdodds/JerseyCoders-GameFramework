@@ -18,9 +18,4 @@ public class NullLogger implements Logger {
     public void draw(Graphics2D g2d) {
         // Do Nothing
     }
-
-    @Override
-    public void setFramework(Framework framework) {
-        // Do Nothing
-    }
 }

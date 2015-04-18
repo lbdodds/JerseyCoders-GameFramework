@@ -1,6 +1,6 @@
 package me.liamdodds.framework.asset;
 
-import me.liamdodds.framework.Manager;
+import me.liamdodds.framework.Game;
 
 import javax.sound.sampled.*;
 import java.io.InputStream;
@@ -9,13 +9,11 @@ import java.util.HashMap;
 /**
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
-public class AudioManager extends Manager {
-    private String baseURL;
-
+public class AudioManager extends AssetManager {
     private HashMap<String, String> audio = new HashMap<>();
 
-    public AudioManager(String baseURL) {
-        this.baseURL = baseURL;
+    public AudioManager(Game game) {
+        super(game);
     }
 
     public void load(String name, String path) {

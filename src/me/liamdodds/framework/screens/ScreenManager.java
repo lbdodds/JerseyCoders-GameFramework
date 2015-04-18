@@ -1,7 +1,9 @@
 package me.liamdodds.framework.screens;
 
-import me.liamdodds.framework.Manager;
-import me.liamdodds.framework.utility.GameEntity;
+import me.liamdodds.framework.Game;
+import me.liamdodds.framework.utility.Manager;
+import me.liamdodds.framework.utility.Drawable;
+import me.liamdodds.framework.utility.Updatable;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,10 +12,14 @@ import java.util.HashMap;
 /**
  * Created by Liam Cristoforo-Dodds on 12/04/2015.
  */
-public class ScreenManager extends Manager implements GameEntity {
+public class ScreenManager extends Manager implements Drawable, Updatable {
 
     private HashMap<String, Screen> screens = new HashMap<>();
     private ArrayList<Screen> stack = new ArrayList<>();
+
+    public ScreenManager(Game game) {
+        super(game);
+    }
 
     /**
      * Gets the primary screen
@@ -75,7 +81,6 @@ public class ScreenManager extends Manager implements GameEntity {
     /**
      * Updates the screens depending on their ScreenProcessState
      */
-    @Override
     public void update() {
         if(stack.isEmpty()) { return; }
         Screen active = getPrimaryScreen();
@@ -95,7 +100,6 @@ public class ScreenManager extends Manager implements GameEntity {
      * Draws the screens depending on their ScreenProcessState
      * @param g2d
      */
-    @Override
     public void draw(Graphics2D g2d) {
         if(stack.isEmpty()) { return; }
         Screen active = getPrimaryScreen();
