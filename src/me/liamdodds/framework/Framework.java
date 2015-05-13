@@ -1,13 +1,8 @@
 package me.liamdodds.framework;
 
-import me.liamdodds.framework.asset.AudioManager;
-import me.liamdodds.framework.asset.SpriteManager;
-import me.liamdodds.framework.logging.Logger;
-import me.liamdodds.framework.screens.ScreenManager;
 import me.liamdodds.framework.utility.FPSLock;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
  * The Game Framework that runs the game loop
@@ -40,9 +35,6 @@ public class Framework extends Canvas {
 
         this.addKeyListener(game.getKeyboardManager());
         this.addMouseListener(game.getMouseManager());
-
-        game.getSpriteManager().load("bottles", "bottles.png");
-        game.getAudioManager().play("audio");
     }
 
     /**
@@ -63,7 +55,7 @@ public class Framework extends Canvas {
      */
     @Override
     public void update() {
-        game.getScreenManager().update();
+        game.getScreenManager().update(game);
     }
 
     /**
@@ -74,5 +66,9 @@ public class Framework extends Canvas {
     public void draw(Graphics2D g2d) {
         game.getScreenManager().draw(g2d);
         game.getLogger().draw(g2d);
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

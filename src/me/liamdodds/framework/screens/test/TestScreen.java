@@ -22,7 +22,7 @@ public class TestScreen extends Screen {
     }
 
     @Override
-    public void update() {
+    public void update(Game game) {
 
         num = random.nextInt(100);
     }

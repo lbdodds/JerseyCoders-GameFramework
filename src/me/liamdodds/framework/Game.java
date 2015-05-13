@@ -30,7 +30,6 @@ public class Game {
         initialize();
     }
 
-
     private void initialize() {
         random = new Random();
         logger = new ScreenLogger(this);
@@ -77,4 +76,5 @@ public class Game {
     public Random getRandom() {
         return random;
     }
+
 }

@@ -81,7 +81,7 @@ public class ScreenManager extends Manager implements Drawable, Updatable {
     /**
      * Updates the screens depending on their ScreenProcessState
      */
-    public void update() {
+    public void update(Game game) {
         if(stack.isEmpty()) { return; }
         Screen active = getPrimaryScreen();
         Screen previous = active;
@@ -91,7 +91,7 @@ public class ScreenManager extends Manager implements Drawable, Updatable {
             if(screen.getUpdateState() == ScreenProcessState.SECONDARY && previous != null && previous != active) { continue; }
             if(screen.getUpdateState() == ScreenProcessState.TRANSPARENT && screen != active)  { continue; }
 
-            screen.update();
+            screen.update(game);
             previous = screen;
         }
     }
