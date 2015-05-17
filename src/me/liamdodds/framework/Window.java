@@ -1,19 +1,25 @@
 package me.liamdodds.framework;
 
+import me.liamdodds.framework.configuration.ConfigObject;
+import me.liamdodds.framework.configuration.Configurable;
+import me.liamdodds.framework.configuration.Configuration;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Create a window for the game to be rendered in. The starting class of the entire application.
  * Created by Liam Cristoforo-Dodds on 05/04/2015.
  */
-public class Window extends JFrame {
+public class Window extends JFrame implements Configurable {
 
     /**
      * Constructs the window, setting parameters.
      */
     private Window() {
-        this.setTitle("Jersey Coders 2D Game Framework");
-        this.setSize(800, 600);
+        Configuration.registerConfigurable(this);
+        this.setTitle(Configuration.cast("window.title", String.class, "Jersey Coders 2D Game Framework"));
+        this.setSize(Configuration.cast("window.size", Dimension.class, new Dimension(800, 600)));
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
@@ -29,5 +35,15 @@ public class Window extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Window());
+    }
+
+    @Override
+    public void onConfigurationChange(ConfigObject configObject) {
+        if(configObject.isKey("window.title")) {
+            this.setTitle(configObject.cast(String.class, this.getTitle()));
+        }
+        if(configObject.isKey("window.size")) {
+            this.setSize(configObject.cast(Dimension.class, this.getSize()));
+        }
     }
 }
