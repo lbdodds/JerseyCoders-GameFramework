@@ -17,7 +17,7 @@ public class Window extends JFrame implements Configurable {
      * Constructs the window, setting parameters.
      */
     private Window() {
-        Configuration.registerConfigurable(this);
+        Configuration.subscribe(this);
         this.setTitle(Configuration.cast("window.title", String.class, "Jersey Coders 2D Game Framework"));
         this.setSize(Configuration.cast("window.size", Dimension.class, new Dimension(800, 600)));
         this.setLocationRelativeTo(null);

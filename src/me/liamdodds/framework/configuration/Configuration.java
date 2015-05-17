@@ -18,7 +18,7 @@ public class Configuration {
         configurables.forEach((configurable -> configurable.onConfigurationChange(configObject)));
     }
 
-    public static void registerConfigurable(Configurable configurable) {
+    public static void subscribe(Configurable configurable) {
         configurables.add(configurable);
     }
 
