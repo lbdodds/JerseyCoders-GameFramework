@@ -2,6 +2,7 @@ package me.liamdodds.framework;
 
 import me.liamdodds.framework.asset.AudioManager;
 import me.liamdodds.framework.asset.SpriteManager;
+import me.liamdodds.framework.configuration.Configuration;
 import me.liamdodds.framework.input.KeyboardManager;
 import me.liamdodds.framework.input.MouseManager;
 import me.liamdodds.framework.logging.Logger;
@@ -12,6 +13,9 @@ import java.awt.*;
 import java.util.Random;
 
 /**
+ * Game Data contains data information about the game and is used to pass
+ * around a group of managers and a configuration object to all Updatable
+ * objects
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
 public class GameData {
@@ -23,10 +27,11 @@ public class GameData {
     private AudioManager audioManager;
     private KeyboardManager keyboardManager;
     private MouseManager mouseManager;
+    private Configuration configuration;
     private Logger logger;
 
-    public GameData(Framework framework) {
-        this.framework = framework;
+    public GameData(Game game) {
+        this.framework = game.getFramework();
         initialize();
     }
 
@@ -40,7 +45,9 @@ public class GameData {
         keyboardManager = new KeyboardManager(this);
         mouseManager    = new MouseManager(this);
 
-        keyboardManager.setLogger(logger);
+        configuration = new Configuration();
+
+//        keyboardManager.setLogger(logger);
     }
 
     public Point getMousePosition() {
@@ -77,4 +84,7 @@ public class GameData {
         return random;
     }
 
+    public Configuration getConfiguration() {
+        return configuration;
+    }
 }
