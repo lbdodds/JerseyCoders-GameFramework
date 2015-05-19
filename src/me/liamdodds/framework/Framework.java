@@ -9,11 +9,16 @@ import java.awt.*;
  * Created by Liam Cristoforo-Dodds on 06/04/2015.
  */
 public class Framework extends Canvas {
+    private Game game;
     private GameData gameData;
 
-    public Framework() {
+    public Framework(Game game) {
         super();
+        this.game = game;
+    }
 
+    public void start() {
+        this.gameData = game.getGameData();
         /*
          *  Start a new a thread, as to avoid running the gameLoop on the
          *  AWT thread and blocking
@@ -31,13 +36,8 @@ public class Framework extends Canvas {
      * Initializes the framework
      */
     private void initialize() {
-        gameData = new GameData(this);
-
         this.addKeyListener(gameData.getKeyboardManager());
         this.addMouseListener(gameData.getMouseManager());
-
-        gameData.getSpriteManager().load("bottles", "bottles.png");
-        gameData.getAudioManager().play("audio");
     }
 
     /**

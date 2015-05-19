@@ -2,6 +2,7 @@ package me.liamdodds.framework;
 
 import me.liamdodds.framework.asset.AudioManager;
 import me.liamdodds.framework.asset.SpriteManager;
+import me.liamdodds.framework.configuration.Configuration;
 import me.liamdodds.framework.input.KeyboardManager;
 import me.liamdodds.framework.input.MouseManager;
 import me.liamdodds.framework.logging.Logger;
@@ -23,6 +24,7 @@ public class GameData {
     private AudioManager audioManager;
     private KeyboardManager keyboardManager;
     private MouseManager mouseManager;
+    private Configuration configuration;
     private Logger logger;
 
     public GameData(Framework framework) {
@@ -40,7 +42,9 @@ public class GameData {
         keyboardManager = new KeyboardManager(this);
         mouseManager    = new MouseManager(this);
 
-        keyboardManager.setLogger(logger);
+        configuration = new Configuration();
+
+//        keyboardManager.setLogger(logger);
     }
 
     public Point getMousePosition() {
@@ -77,4 +81,7 @@ public class GameData {
         return random;
     }
 
+    public Configuration getConfiguration() {
+        return configuration;
+    }
 }
