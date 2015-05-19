@@ -1,6 +1,6 @@
 package me.liamdodds.framework.screens;
 
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 import me.liamdodds.framework.utility.Drawable;
 import me.liamdodds.framework.utility.GameObject;
 import me.liamdodds.framework.utility.Updatable;
@@ -10,8 +10,8 @@ import me.liamdodds.framework.utility.Updatable;
  */
 public abstract class Screen extends GameObject implements Updatable, Drawable {
 
-    public Screen(Game game) {
-        super(game);
+    public Screen(GameData gameData) {
+        super(gameData);
     }
 
     public abstract void becomesActive();

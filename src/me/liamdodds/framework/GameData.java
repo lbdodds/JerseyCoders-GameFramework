@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
-public class Game {
+public class GameData {
     private Framework framework;
 
     private Random random;
@@ -25,7 +25,7 @@ public class Game {
     private MouseManager mouseManager;
     private Logger logger;
 
-    public Game(Framework framework) {
+    public GameData(Framework framework) {
         this.framework = framework;
         initialize();
     }

@@ -1,6 +1,6 @@
 package me.liamdodds.framework.screens;
 
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 import me.liamdodds.framework.utility.Manager;
 import me.liamdodds.framework.utility.Drawable;
 import me.liamdodds.framework.utility.Updatable;
@@ -17,8 +17,8 @@ public class ScreenManager extends Manager implements Drawable, Updatable {
     private HashMap<String, Screen> screens = new HashMap<>();
     private ArrayList<Screen> stack = new ArrayList<>();
 
-    public ScreenManager(Game game) {
-        super(game);
+    public ScreenManager(GameData gameData) {
+        super(gameData);
     }
 
     /**
@@ -81,7 +81,7 @@ public class ScreenManager extends Manager implements Drawable, Updatable {
     /**
      * Updates the screens depending on their ScreenProcessState
      */
-    public void update(Game game) {
+    public void update(GameData gameData) {
         if(stack.isEmpty()) { return; }
         Screen active = getPrimaryScreen();
         Screen previous = active;
@@ -91,7 +91,7 @@ public class ScreenManager extends Manager implements Drawable, Updatable {
             if(screen.getUpdateState() == ScreenProcessState.SECONDARY && previous != null && previous != active) { continue; }
             if(screen.getUpdateState() == ScreenProcessState.TRANSPARENT && screen != active)  { continue; }
 
-            screen.update(game);
+            screen.update(gameData);
             previous = screen;
         }
     }

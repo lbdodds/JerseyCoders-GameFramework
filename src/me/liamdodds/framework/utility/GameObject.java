@@ -1,6 +1,6 @@
 package me.liamdodds.framework.utility;
 
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 import me.liamdodds.framework.logging.Loggable;
 import me.liamdodds.framework.logging.Logger;
 import me.liamdodds.framework.logging.NullLogger;
@@ -10,10 +10,10 @@ import me.liamdodds.framework.logging.NullLogger;
  */
 public abstract class GameObject implements Loggable {
     protected Logger logger = NullLogger.instance;
-    protected Game game;
+    protected GameData gameData;
 
-    public GameObject(Game game) {
-        this.game = game;
+    public GameObject(GameData gameData) {
+        this.gameData = gameData;
     }
 
     @Override

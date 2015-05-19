@@ -1,6 +1,6 @@
 package me.liamdodds.framework.input;
 
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 import me.liamdodds.framework.utility.Manager;
 
 import java.awt.*;
@@ -14,8 +14,8 @@ public class MouseManager extends Manager implements MouseListener {
 
     private static boolean[] state = new boolean[3];
 
-    public MouseManager(Game game) {
-        super(game);
+    public MouseManager(GameData gameData) {
+        super(gameData);
     }
 
 
@@ -31,7 +31,7 @@ public class MouseManager extends Manager implements MouseListener {
 
     public Point getPosition() {
         try {
-            Point mousePosition = game.getMousePosition();
+            Point mousePosition = gameData.getMousePosition();
             return mousePosition != null ? mousePosition : new Point(0,0);
         } catch(Exception e) {
             return new Point(0,0);

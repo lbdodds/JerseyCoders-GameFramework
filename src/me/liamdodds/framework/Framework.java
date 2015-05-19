@@ -9,7 +9,7 @@ import java.awt.*;
  * Created by Liam Cristoforo-Dodds on 06/04/2015.
  */
 public class Framework extends Canvas {
-    private Game game;
+    private GameData gameData;
 
     public Framework() {
         super();
@@ -31,10 +31,13 @@ public class Framework extends Canvas {
      * Initializes the framework
      */
     private void initialize() {
-        game = new Game(this);
+        gameData = new GameData(this);
 
-        this.addKeyListener(game.getKeyboardManager());
-        this.addMouseListener(game.getMouseManager());
+        this.addKeyListener(gameData.getKeyboardManager());
+        this.addMouseListener(gameData.getMouseManager());
+
+        gameData.getSpriteManager().load("bottles", "bottles.png");
+        gameData.getAudioManager().play("audio");
     }
 
     /**
@@ -55,7 +58,7 @@ public class Framework extends Canvas {
      */
     @Override
     public void update() {
-        game.getScreenManager().update(game);
+        gameData.getScreenManager().update(gameData);
     }
 
     /**
@@ -64,11 +67,7 @@ public class Framework extends Canvas {
      */
     @Override
     public void draw(Graphics2D g2d) {
-        game.getScreenManager().draw(g2d);
-        game.getLogger().draw(g2d);
-    }
-
-    public Game getGame() {
-        return game;
+        gameData.getScreenManager().draw(g2d);
+        gameData.getLogger().draw(g2d);
     }
 }

@@ -1,6 +1,6 @@
 package me.liamdodds.framework.asset;
 
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 import me.liamdodds.framework.utility.Manager;
 
 /**
@@ -9,8 +9,8 @@ import me.liamdodds.framework.utility.Manager;
 public abstract class AssetManager extends Manager {
     protected String baseURL = "/";
 
-    public AssetManager(Game game) {
-        super(game);
+    public AssetManager(GameData gameData) {
+        super(gameData);
     }
 
     public void setBaseURL(String baseURL) {

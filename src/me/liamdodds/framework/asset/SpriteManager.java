@@ -1,6 +1,6 @@
 package me.liamdodds.framework.asset;
 
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -14,8 +14,8 @@ import java.util.HashMap;
 public class SpriteManager extends AssetManager {
     private HashMap<String, BufferedImage> sprites = new HashMap<>();
 
-    public SpriteManager(Game game) {
-        super(game);
+    public SpriteManager(GameData gameData) {
+        super(gameData);
     }
 
     /**
