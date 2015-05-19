@@ -19,6 +19,8 @@ public class Game {
         framework = new Framework(this);
         gameData = new GameData(this);
         configuration = new Configuration();
+
+        start();
     }
 
     /**
