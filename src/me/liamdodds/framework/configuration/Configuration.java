@@ -8,9 +8,9 @@ import java.util.HashMap;
  * Created by Liam Cristoforo-Dodds on 17/05/15.
  */
 public class Configuration {
-    private static HashMap<String, ConfigObject> configObjects;
-    private static ArrayList<Configurable> configurables;
-    static {
+    private HashMap<String, ConfigObject> configObjects;
+    private ArrayList<Configurable> configurables;
+    public Configuration() {
         configObjects = new HashMap<>();
         configurables = new ArrayList<>();
     }
@@ -19,7 +19,7 @@ public class Configuration {
      * Publishes out changes to configurable objects
      * @param configObject
      */
-    public static void publish(ConfigObject configObject) {
+    public void publish(ConfigObject configObject) {
         configurables.forEach((configurable -> configurable.onConfigurationChange(configObject)));
     }
 
@@ -27,7 +27,7 @@ public class Configuration {
      * Subscribes a configurable to all published events
      * @param configurable
      */
-    public static void subscribe(Configurable configurable) {
+    public void subscribe(Configurable configurable) {
         configurables.add(configurable);
     }
 
@@ -36,7 +36,7 @@ public class Configuration {
      * @param key
      * @param object
      */
-    public static void add(String key, Object object) {
+    public void add(String key, Object object) {
         ConfigObject configObject = new ConfigObject(key, object);
         configObjects.put(key, configObject);
         publish(configObject);
@@ -47,7 +47,7 @@ public class Configuration {
      * @param key
      * @return
      */
-    public static ConfigObject get(String key) {
+    public ConfigObject get(String key) {
         return configObjects.get(key);
     }
 
@@ -56,7 +56,7 @@ public class Configuration {
      * @param key
      * @return
      */
-    public static Object getValue(String key) {
+    public Object getValue(String key) {
         return getValue(key, null);
     }
 
@@ -67,7 +67,7 @@ public class Configuration {
      * @param <T>
      * @return
      */
-    public static <T> T cast(String key, Class<T> type) {
+    public <T> T cast(String key, Class<T> type) {
         return cast(key, type, null);
     }
 
@@ -77,7 +77,7 @@ public class Configuration {
      * @param def
      * @return
      */
-    public static Object getValue(String key, Object def) {
+    public Object getValue(String key, Object def) {
         if(configObjects.containsKey(key)) {
             return configObjects.get(key).getValue();
         }
@@ -86,14 +86,14 @@ public class Configuration {
     }
 
     /**
-     * Retursn the value of a configuration object cast to T (or the value of def)
+     * Returns the value of a configuration object cast to T (or the value of def)
      * @param key
      * @param type
      * @param def
      * @param <T>
      * @return
      */
-    public static <T> T cast(String key, Class<T> type, T def) {
+    public <T> T cast(String key, Class<T> type, T def) {
         if(configObjects.containsKey(key)) {
             return configObjects.get(key).cast(type, def);
         }

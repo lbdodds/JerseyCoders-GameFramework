@@ -16,15 +16,15 @@ public class Window extends JFrame implements Configurable {
     /**
      * Constructs the window, setting parameters.
      */
-    private Window() {
-        Configuration.subscribe(this);
-        this.setTitle(Configuration.cast("window.title", String.class, "Jersey Coders 2D Game Framework"));
-        this.setSize(Configuration.cast("window.size", Dimension.class, new Dimension(800, 600)));
+    private Window(Configuration configuration) {
+        configuration.subscribe(this);
+        this.setTitle(configuration.cast("window.title", String.class, "Jersey Coders 2D Game Framework"));
+        this.setSize(configuration.cast("window.size", Dimension.class, new Dimension(800, 600)));
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
         // Sets the action that occurs when the window is closed
-        this.setDefaultCloseOperation(Configuration.cast("window.defaultCloseOperation", int.class, WindowConstants.EXIT_ON_CLOSE));
+        this.setDefaultCloseOperation(configuration.cast("window.defaultCloseOperation", int.class, WindowConstants.EXIT_ON_CLOSE));
 
         // Sets the inside panel of the window
         this.setContentPane(new Framework());
@@ -34,7 +34,7 @@ public class Window extends JFrame implements Configurable {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Window());
+        SwingUtilities.invokeLater(() -> new Window(new Configuration()));
     }
 
     @Override
