@@ -1,6 +1,6 @@
 package me.liamdodds.framework.screens.test;
 
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 import me.liamdodds.framework.screens.Screen;
 import me.liamdodds.framework.screens.ScreenProcessState;
 
@@ -16,8 +16,8 @@ public class PrimaryScreen extends Screen {
     private int num = 10;
     private Random random = new Random();
 
-    public PrimaryScreen(Game game, Color color) {
-        super(game);
+    public PrimaryScreen(GameData gameData, Color color) {
+        super(gameData);
         this.color = color;
     }
 

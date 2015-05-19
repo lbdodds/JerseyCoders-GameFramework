@@ -1,7 +1,6 @@
 package me.liamdodds.framework.logging;
 
-import me.liamdodds.framework.Framework;
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,10 +11,10 @@ import java.util.Collections;
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
 public class ScreenLogger implements Logger {
-    Game game;
+    GameData gameData;
     ArrayList<LogMessage> queue = new ArrayList<>();
 
-    public ScreenLogger(Game game) { this.game = game; }
+    public ScreenLogger(GameData gameData) { this.gameData = gameData; }
 
     /**
      * Adds the log to the current queue
@@ -35,7 +34,7 @@ public class ScreenLogger implements Logger {
         ArrayList<LogMessage> buffer = (ArrayList<LogMessage>)queue.clone();
         ArrayList<LogMessage> toBeRemoved = new ArrayList<>();
         Collections.reverse(buffer);
-        int height = (int)game.getWindowSize().getHeight();
+        int height = (int) gameData.getWindowSize().getHeight();
         int y = height;
 
         for(LogMessage message : buffer) {

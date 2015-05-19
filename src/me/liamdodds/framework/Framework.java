@@ -1,20 +1,15 @@
 package me.liamdodds.framework;
 
-import me.liamdodds.framework.asset.AudioManager;
-import me.liamdodds.framework.asset.SpriteManager;
-import me.liamdodds.framework.logging.Logger;
-import me.liamdodds.framework.screens.ScreenManager;
 import me.liamdodds.framework.utility.FPSLock;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
  * The Game Framework that runs the game loop
  * Created by Liam Cristoforo-Dodds on 06/04/2015.
  */
 public class Framework extends Canvas {
-    private Game game;
+    private GameData gameData;
 
     public Framework() {
         super();
@@ -36,13 +31,13 @@ public class Framework extends Canvas {
      * Initializes the framework
      */
     private void initialize() {
-        game = new Game(this);
+        gameData = new GameData(this);
 
-        this.addKeyListener(game.getKeyboardManager());
-        this.addMouseListener(game.getMouseManager());
+        this.addKeyListener(gameData.getKeyboardManager());
+        this.addMouseListener(gameData.getMouseManager());
 
-        game.getSpriteManager().load("bottles", "bottles.png");
-        game.getAudioManager().play("audio");
+        gameData.getSpriteManager().load("bottles", "bottles.png");
+        gameData.getAudioManager().play("audio");
     }
 
     /**
@@ -63,7 +58,7 @@ public class Framework extends Canvas {
      */
     @Override
     public void update() {
-        game.getScreenManager().update();
+        gameData.getScreenManager().update();
     }
 
     /**
@@ -72,7 +67,7 @@ public class Framework extends Canvas {
      */
     @Override
     public void draw(Graphics2D g2d) {
-        game.getScreenManager().draw(g2d);
-        game.getLogger().draw(g2d);
+        gameData.getScreenManager().draw(g2d);
+        gameData.getLogger().draw(g2d);
     }
 }

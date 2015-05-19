@@ -24,7 +24,7 @@ public class Window extends JFrame implements Configurable {
         this.setResizable(false);
 
         // Sets the action that occurs when the window is closed
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(Configuration.cast("window.defaultCloseOperation", int.class, WindowConstants.EXIT_ON_CLOSE));
 
         // Sets the inside panel of the window
         this.setContentPane(new Framework());

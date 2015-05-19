@@ -1,6 +1,6 @@
 package me.liamdodds.framework.asset;
 
-import me.liamdodds.framework.Game;
+import me.liamdodds.framework.GameData;
 
 import javax.sound.sampled.*;
 import java.io.InputStream;
@@ -12,8 +12,8 @@ import java.util.HashMap;
 public class AudioManager extends AssetManager {
     private HashMap<String, String> audio = new HashMap<>();
 
-    public AudioManager(Game game) {
-        super(game);
+    public AudioManager(GameData gameData) {
+        super(gameData);
     }
 
     public void load(String name, String path) {
