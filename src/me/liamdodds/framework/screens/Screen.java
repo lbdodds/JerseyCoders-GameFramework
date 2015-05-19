@@ -14,6 +14,11 @@ public abstract class Screen extends GameObject implements Updatable, Drawable {
         super(gameData);
     }
 
+    @Override
+    public void update(GameData gameData) {
+        this.gameData = gameData;
+    }
+
     public abstract void becomesActive();
     public abstract void becomeInactive();
     public abstract ScreenProcessState getUpdateState();
