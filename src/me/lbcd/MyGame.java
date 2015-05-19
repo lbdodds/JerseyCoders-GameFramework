@@ -8,11 +8,15 @@ import me.liamdodds.framework.Game;
  */
 public class MyGame extends Game {
 
+    /**
+     * By creating an instance of MyGame, the start method is called (through the Game constructor)
+     * The start method is meant to be used for configuration and preparing at least the first screen
+     * before the actual window is displayed. The Window will be created by calling super.start()
+     */
     public void start() {
 
-        configuration.add("window.title", "Butts");
+        configuration.add("window.title", "The Bottle Game");
 
-        gameData.getSpriteManager().setLogger(gameData.getLogger());
         gameData.getSpriteManager().load("bottles", "me/liamdodds/resources/sprites/bottles.png");
         gameData.getAudioManager().play("audio");
 
