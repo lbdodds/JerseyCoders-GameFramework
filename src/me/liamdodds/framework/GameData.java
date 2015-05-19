@@ -13,6 +13,9 @@ import java.awt.*;
 import java.util.Random;
 
 /**
+ * Game Data contains data information about the game and is used to pass
+ * around a group of managers and a configuration object to all Updatable
+ * objects
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
 public class GameData {
@@ -27,8 +30,8 @@ public class GameData {
     private Configuration configuration;
     private Logger logger;
 
-    public GameData(Framework framework) {
-        this.framework = framework;
+    public GameData(Game game) {
+        this.framework = game.getFramework();
         initialize();
     }
 
