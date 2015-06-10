@@ -1,5 +1,6 @@
 package me.lbcd.screens;
 
+import me.lbcd.config.KeyboardConfig;
 import me.liamdodds.framework.GameData;
 import me.liamdodds.framework.configuration.Configuration;
 import me.liamdodds.framework.input.KeyboardManager;
@@ -42,7 +43,7 @@ public class BottleScreen extends Screen {
      */
     @Override
     public void draw(Graphics2D g2d) {
-        animation.draw(g2d,x,y);
+        animation.draw(g2d, x, y);
     }
 
     /**
@@ -55,43 +56,10 @@ public class BottleScreen extends Screen {
         KeyboardManager keyboard = gameData.getKeyboardManager();
         Configuration config = gameData.getConfiguration();
 
-        if(keyboard.isKeyDown(
-            config.cast(
-                "keyboard.keys.up",
-                int[].class,
-                new int[]{KeyEvent.VK_UP, KeyEvent.VK_W}
-            )
-        )) {
-            y--;
-        }
-        
-        if(keyboard.isKeyDown(
-                config.cast(
-                        "keyboard.keys.down",
-                        int[].class,
-                        new int[]{KeyEvent.VK_DOWN, KeyEvent.VK_S}
-                )
-        )) {
-            y++;
-        }
-        if(keyboard.isKeyDown(
-                config.cast(
-                        "keyboard.keys.left",
-                        int[].class,
-                        new int[]{KeyEvent.VK_LEFT, KeyEvent.VK_A}
-                )
-        )) {
-            x--;
-        }
-        if(keyboard.isKeyDown(
-                config.cast(
-                        "keyboard.keys.right",
-                        int[].class,
-                        new int[]{KeyEvent.VK_RIGHT, KeyEvent.VK_D}
-                )
-        )) {
-            x++;
-        }
+        if(keyboard.isKeyDown(helpers.getKeysFromConfig(KeyboardConfig.KEYBOARD_KEYS_UP))) { y--; }
+        if(keyboard.isKeyDown(helpers.getKeysFromConfig(KeyboardConfig.KEYBOARD_KEYS_DOWN))) { y++; }
+        if(keyboard.isKeyDown(helpers.getKeysFromConfig(KeyboardConfig.KEYBOARD_KEYS_LEFT))) { x--; }
+        if(keyboard.isKeyDown(helpers.getKeysFromConfig(KeyboardConfig.KEYBOARD_KEYS_RIGHT))) { x++; }
         
         animation.update();
     }
