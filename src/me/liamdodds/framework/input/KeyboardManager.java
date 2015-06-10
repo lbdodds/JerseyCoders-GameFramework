@@ -48,4 +48,18 @@ public class KeyboardManager extends Manager implements KeyListener {
     public boolean isKeyDown(int key) {
         return state[key];
     }
+
+    /**
+     * Checks to see whether any of the passed keys has been pressed
+     * @param keys
+     * @return
+     */
+    public boolean isKeyDown(int ...keys) {
+        for(int key : keys) {
+            if(state[key]) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

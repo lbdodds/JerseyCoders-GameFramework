@@ -42,6 +42,11 @@ public class ScreenManager extends Manager implements Drawable, Updatable {
         if(screens.containsKey(reference)) { return; }
 
         screens.put(reference, screen);
+        
+        if(stack.size() == 0) {
+            screen.becomesActive();
+        }
+        
         stack.add(screen);
     }
 

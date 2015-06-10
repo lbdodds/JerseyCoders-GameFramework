@@ -2,6 +2,11 @@ package me.lbcd;
 
 import me.lbcd.screens.BottleScreen;
 import me.liamdodds.framework.Game;
+import me.liamdodds.framework.Window;
+import me.liamdodds.framework.asset.AudioManager;
+import me.liamdodds.framework.asset.SpriteManager;
+
+import java.awt.event.KeyEvent;
 
 /**
  * Created by Liam Cristoforo-Dodds on 19/05/15.
@@ -15,12 +20,17 @@ public class MyGame extends Game {
      */
     public void start() {
 
-        configuration.add("window.title", "The Bottle Game");
+        configuration.add(Window.CONFIG_TITLE, "The Bottle Game");
+        configuration.add(Window.CONFIG_RESIZE, false);
 
-        gameData.getSpriteManager().load("bottles", "me/liamdodds/resources/sprites/bottles.png");
+        gameData.getSpriteManager().addBasePath(SpriteManager.DEFAULT_FOLDER);
+        gameData.getAudioManager().addBasePath(AudioManager.DEFAULT_FOLDER);
+        
+        gameData.getSpriteManager().load("spritesheet.bottles", "bottles.png");
         gameData.getAudioManager().play("audio");
 
         gameData.getScreenManager().add("bottles", new BottleScreen(gameData));
+        gameData.getConfiguration().add("keyboard.keys.up", new int[]{ KeyEvent.VK_UP, KeyEvent.VK_O });
 
         super.start();
     }

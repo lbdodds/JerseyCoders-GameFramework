@@ -19,6 +19,7 @@ import java.util.Random;
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
 public class GameData {
+    private Game game;
     private Framework framework;
 
     private Random random;
@@ -31,6 +32,7 @@ public class GameData {
     private Logger logger;
 
     public GameData(Game game) {
+        this.game = game;
         this.framework = game.getFramework();
         initialize();
     }
