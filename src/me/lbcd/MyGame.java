@@ -1,5 +1,6 @@
 package me.lbcd;
 
+import me.lbcd.config.KeyboardConfig;
 import me.lbcd.screens.BottleScreen;
 import me.liamdodds.framework.Game;
 import me.liamdodds.framework.Window;
@@ -29,8 +30,9 @@ public class MyGame extends Game {
         gameData.getSpriteManager().load("spritesheet.bottles", "bottles.png");
         gameData.getAudioManager().play("audio");
 
-        gameData.getScreenManager().add("bottles", new BottleScreen(gameData));
-        gameData.getConfiguration().add("keyboard.keys.up", new int[]{ KeyEvent.VK_UP, KeyEvent.VK_O });
+        gameData.getScreenManager().add("screen.bottles", new BottleScreen(gameData));
+        
+        KeyboardConfig.configure(gameData.getConfiguration());
 
         super.start();
     }
