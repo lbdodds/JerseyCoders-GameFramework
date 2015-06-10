@@ -3,6 +3,7 @@ package me.liamdodds.framework.asset;
 import me.liamdodds.framework.GameData;
 
 import javax.sound.sampled.*;
+import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
 
@@ -10,6 +11,8 @@ import java.util.HashMap;
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
 public class AudioManager extends AssetManager {
+    public final static String DEFAULT_FOLDER = "/me/liamdodds/resources/audio/";
+    
     private HashMap<String, String> audio = new HashMap<>();
 
     public AudioManager(GameData gameData) {
@@ -18,11 +21,15 @@ public class AudioManager extends AssetManager {
 
     public void load(String name, String path) {
         if(!audio.containsKey(name)) {
-            try {
-                audio.put(name, baseURL + path);
-            } catch(Exception e) {
-                logger.log("AudioManager", "There was an exception attempting to load " + path);
-                logger.log("AudioManager", e.getMessage());
+            for(String basePath : basePaths) {
+                try {
+                    InputStream is = this.getClass().getResourceAsStream(basePath + path);
+                    audio.put(name, basePath + path);
+                    break;
+                } catch (Exception e) {
+                    logger.log("AudioManager", "There was an exception attempting to load " + path);
+                    logger.log("AudioManager", e.getMessage());
+                }
             }
         }
     }

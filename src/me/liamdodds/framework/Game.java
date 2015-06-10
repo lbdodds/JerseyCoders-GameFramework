@@ -10,7 +10,7 @@ import javax.swing.*;
  * and gameData to a parent class.
  * Created by Liam Cristoforo-Dodds on 19/05/15.
  */
-public class Game {
+public abstract class Game {
     protected Framework framework;
     protected GameData gameData;
     protected Configuration configuration;

@@ -12,6 +12,8 @@ import java.util.HashMap;
  * Created by Liam Cristoforo-Dodds on 18/04/2015.
  */
 public class SpriteManager extends AssetManager {
+    public final static String DEFAULT_FOLDER = "/me/liamdodds/resources/sprites/";
+
     private HashMap<String, BufferedImage> sprites = new HashMap<>();
 
     public SpriteManager(GameData gameData) {
@@ -26,13 +28,16 @@ public class SpriteManager extends AssetManager {
      */
     public BufferedImage load(String name, String path) {
         if(!sprites.containsKey(name)) {
-            try {
-                URL url = this.getClass().getResource(baseURL + path);
-                BufferedImage sprite = ImageIO.read(url);
-                sprites.put(name, sprite);
-            } catch (Exception e) {
-                logger.log("SpriteManager", "Error loading resource " + path);
-                logger.log("SpriteManager", e.getMessage());
+            for(String basePath : basePaths) {
+                try {
+                    URL url = this.getClass().getResource(basePath + path);
+                    BufferedImage sprite = ImageIO.read(url);
+                    sprites.put(name, sprite);
+                    break;
+                } catch (Exception e) {
+                    logger.log("SpriteManager", "Error loading resource " + path);
+                    logger.log("SpriteManager", e.getMessage());
+                }
             }
         } else {
             logger.log("SpriteManager", "Sprite " + name + " already exists");
